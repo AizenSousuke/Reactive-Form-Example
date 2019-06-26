@@ -1,0 +1,10 @@
+
+<div class="col-xs-12">
+    <h3 class="text-primary m-3 bg-light p-3 text-center">Reactive Form Example</h3>
+    <div class="p-3 m-3 shadow-lg">
+        Name: <input type="text" [formControl]="name"> <button class="btn btn-primary" (click)="updateName()">Update Name</button>
+        <div class="text-info">
+            Value of name: {{ name.value }}
+        </div>
+    </div>
+</div>

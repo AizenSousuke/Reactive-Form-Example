@@ -1,0 +1,55 @@
+<div class="col-xs-12">
+    <h3 class="text-primary bg-light m-3 p-3 text-center">Profile Editor</h3>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="m-3 p-3 shadow-lg">
+        <h3 class="text-secondary m-3">
+            Name
+        </h3>
+        <label class="pl-2">
+            First Name:
+            <input type="text" formControlName="firstName" required>
+        </label>
+        <label class="pl-2">
+            Last Name:
+            <input type="text" formControlName="lastName" required>
+        </label>
+        <div formGroupName="address">
+            <h3 class="text-secondary m-3">
+                Address
+            </h3>
+            <label class="pl-2">
+                Street:
+                <input type="text" formControlName="street">
+            </label>
+            <label class="pl-2">
+                City:
+                <input type="text" formControlName="city">
+            </label>
+            <label class="pl-2">
+                State:
+                <input type="text" formControlName="state">
+            </label>
+            <label class="pl-2">
+                Zip:
+                <input type="text" formControlName="zip">
+            </label>
+        </div>
+        <div formArrayName="aliases">
+            <div *ngFor="let address of aliases.controls; let i = index">
+                <!-- The repeated alias template -->
+                <label class="pl-2">
+                    Alias:
+                    <!-- Because form array elements are unnamed, you assign the index to the i variable and pass it to each control to bind it to the formControlName input. -->
+                    <input type="text" [formControlName]="i">
+                </label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-info m-3" (click)="updateProfile()">Update Profile</button>
+        <button type="button" class="btn btn-info m-3" (click)="addAlias()">Add Alias</button>
+        <button type="submit" class="btn btn-primary m-3" [disabled]="!profileForm.valid">Submit</button>
+        <!--<label class="text-danger" [hidden]="!names"><b>Your name is: {{ profileForm.value.firstName }} {{ profileForm.value.lastName }}</b></label>-->
+
+    </form>
+    <p class="m-3 p-3 text-warning shadow-lg">
+        Form Status: {{ profileForm.status }}
+    </p>
+</div>
